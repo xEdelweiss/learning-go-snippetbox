@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  database:
+    image: mysql
+    restart: no
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: snippetbox
+      MYSQL_USER: username
+      MYSQL_PASSWORD: userpass
+    volumes:
+      - "./docker/schema.sql:/docker-entrypoint-initdb.d/1.sql"
+      - "./docker/seed.sql:/docker-entrypoint-initdb.d/2.sql"
+    ports:
+      - 3306:3306
